@@ -28,6 +28,7 @@
     * Use `:` to construct lists
         * `(:):: a -> [a] -> [a] `
     * Use `l1++l2` to append list l2 at the end of list l1
+    * Use `L!!i` to access the i+1 th element in list L (L[i])
 
 * Define function with multiple guards -- more readable
 ```Haskell
