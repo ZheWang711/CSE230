@@ -28,4 +28,11 @@
     * Use `:` to construct lists
         * `(:):: a -> [a] -> [a] `
     * Use `l1++l2` to append list l2 at the end of list l1
-    * 
+
+* Define function with multiple guards -- more readable
+```Haskell
+    range :: Int -> Int -> [Int]
+    range i j | i >= j = []
+    
+    
+ ```
