@@ -33,6 +33,6 @@
 ```Haskell
     range :: Int -> Int -> [Int]
     range i j | i >= j = []
-    
+              | True = i : range (i+1) j
     
  ```
