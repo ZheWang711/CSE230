@@ -1,4 +1,4 @@
 # Summary
 
-* [Lambda Cauculus](lambda_cauculus.md)
+* [Lambda Calculus](lambda_cauculus.md)
 
