@@ -91,6 +91,13 @@ area (Polygon _) = 0
 ```
 
 ### I/O
+* Basic Concepts:
+    * Result of a program == the value of the name *main* in the module *Main* 
+    * **action**: a special kind of **value**, when a Haskell system evaluates an expression that yields an action, it knows *not* to display the resilt in standard output area, but rather to "take appropriate action".
+        * primitive actions: e.g. write a single char to a file / receive a single char from keyboard
+        * compound actions: e.g. print the entire string into a file
+        * *commmands*: haskell expressions that evaluate to actions.
+        * command type: `IO T` or `IO ()`: command return value of type `T` or no useful value returned
 
 * `putStr::String->IO()`: takes input string, returns action that writes string to std out
 * **Only one way to "execute" action**: make it the value of name `main`  
@@ -98,14 +105,14 @@ area (Polygon _) = 0
   main::IO()
   main = putStr "Hello World! \n"
   ```
-* `do` "sequence" of sub-actions
+* `do` Denote the beginning of a sequence of commands
     ```Haskell
     hehehe :: IO()
     hehehe = do   putStr "Hello world"
                     putStr "Hello world"
                     putStr "\n"
     ```
-* `getLine :: IO -> String`
+* `getLine :: IO String`
     * Name result via assignment `x <- act`
     * EX  
     ```Haskell
@@ -113,7 +120,15 @@ area (Polygon _) = 0
                 n <- getLine
                 putStrLn("Happy New year" ++ n)
     ```
- 
+* Write to a file
+    * `writeFile :: FilePath -> String -> IO()`
+    * `type FilePath = String`
+* Read the entire file
+    * `do s <- readFile "testFile.txt"`
+    * `putStr s`
+* A list of actions
+    * `sequence_ :: [IO a] -> IO()` turning a list of actions (values) into commands (expressions)
+    * `main = sequence_ actionList`
 
     
     
