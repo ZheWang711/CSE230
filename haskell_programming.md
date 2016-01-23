@@ -55,5 +55,12 @@
     areaCircle(c)  -- OK
     areaSquare(c)  -- type error
     ```
+* Build a list with squares and circles?
+    ```Haskell
+    data CorS = 
+        | Circle(Double, Double, Double)
+        | Square(Double, Double, Double)
+    area :: CorS -> Double
+    ```
     
     
