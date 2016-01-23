@@ -62,5 +62,35 @@
         | Square(Double, Double, Double)
     area :: CorS -> Double
     ```
+* Example Computing polygon area
+
+```Haskell
+
+import Prelude -- module that include sqrt
+
+data Shape = Triangle Side Side Side | Polygon [Vertex] deriving Show
+type Side = Double
+type Vertex = (Double, Double)
+
+distance :: Vertex -> Vertex -> Double
+distance (x1, y1) (x2, y2) = d where -- we should not use any CAPITAL Character as the start of any identifier.
+    d = sqrt ((x2 - x1)*(x2 - x1) + (y2 - y1)*(y2 - y1))
+
+area :: Shape -> Double
+area(Triangle a b c)  = sQ where
+        p =  (a+b+c) / 2
+        sQ = sqrt (p*(p-a)*(p-b)*(p-c))
+
+-- we use Polygon (v1:v2:v3:vs) to show that we treat v1:v2:v3:vs as a single input list
+area (Polygon (v1:v2:v3:vs)) = sQ where 
+        a = distance v1 v2
+        b = distance v2 v3
+        c = distance v1 v3
+        sQ = area(Triangle a b c) + area(Polygon (v1:v3:vs) )
+area (Polygon _) = 0
+
+
+```
+
     
     
