@@ -7,7 +7,7 @@
 
 
 
-### Types
+### Functions
 * Basic Types:
     * Integer
     * Double
@@ -37,3 +37,7 @@
               | True = i : range (i+1) j
     
  ```
+ 
+ ### Creating Types
+
+* Type 
