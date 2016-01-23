@@ -1,5 +1,5 @@
 # Summary
 
-* [Lambda Calculus](lambdacauculusmd.md./lambdacauculusmd.md)
+* [Lambda Calculus](lambda_cauculus.md)
 * [Haskell Programming](haskell_programming.md)
 
