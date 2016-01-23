@@ -88,9 +88,32 @@ area (Polygon (v1:v2:v3:vs)) = sQ where
         c = distance v1 v3
         sQ = area(Triangle a b c) + area(Polygon (v1:v3:vs) )
 area (Polygon _) = 0
-
-
 ```
+
+### I/O
+
+* `putStr::String->IO()`: takes input string, returns action that writes string to std out
+* **Only one way to "execute" action**: make it the value of name `main`  
+  ```
+  main::IO()
+  main = putStr "Hello World! \n"
+  ```
+* `do` "sequence" of sub-actions
+    ```Haskell
+    hehehe :: IO()
+    hehehe = do   putStr "Hello world"
+                    putStr "Hello world"
+                    putStr "\n"
+    ```
+* `getLine :: IO -> String`
+    * Name result via assignment `x <- act`
+    * EX  
+    ```Haskell
+    main = do putStrLn "What is your name?"
+                n <- getLine
+                putStrLn("Happy New year" ++ n)
+    ```
+ 
 
     
     
