@@ -38,6 +38,22 @@
     
  ```
  
- ### Creating Types
+### Creating Types
 
-* Type 
+* Type Synonyms -- not a new type, just shorthand
+    * Use `type` keyword
+    * not a new type, just an shorthand(alias)
+
+* Define new types
+    ```Haskell
+    data CircleT = Circle(Double, Double, Double)
+    data SquareT = Square(Double, Double, Double)
+    areaSquare :: CircleT -> Double
+    areaCircle(Circle(_,_,r)) = pi * r * r
+    areaSquare(Square(_,_,d)) = d * d
+    c = Circle(1,2,3)
+    areaCircle(c)  -- OK
+    areaSquare(c)  -- type error
+    ```
+    
+    
