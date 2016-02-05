@@ -47,10 +47,20 @@ zog\quad100=  \lambda f.\lambda x. f(f x) (\lambda n.\lambda x. n + x(20)\quad10
 =\lambda f.\lambda x. f(f x) (\lambda x. 20 +x\quad100)\\
 =(\lambda x. 20 +x)(\lambda x. 20 +x(100))\\
 =(\lambda x. 20 +x)(120)\\
-=140$$
+=140$$ 
 
 * Anonymous function: lambda expression! Use it the same place where you would write a function: `(\x -> x + 1) 100`.
-    *  `f x1 x2 .. xn = e` is same as `f = \x1 x2 ... xn -> e` 
+    *  `f x1 x2 .. xn = e` is same as `f = \x1 x2 ... xn -> e`
+
+### Infix operations
+
+* A function whose name appears in parentheses can be used as infix operation.
+* Haskell allows you to use *any* function as an infix operator, by wrapping it inside backticks!: ``2 `plus` 3``
+* Haskell allows you to use *partially applied* infix operators (they are called sections)
+* E.G
+    * **pipeline** function: `0 |> plus 1` and `0 |> plus 1 |> plus 5`  
+    `doThrice f x = x |> f |> f |> f`
+    * section `(1:)` takes a list of numbers and returns a new list with `1` followed by the input list.
 
 
 
