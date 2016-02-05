@@ -1,4 +1,4 @@
-# Haskell Programming
+# Haskell Programming Basics
 
 * ghci
     * `:load foo.hs`
