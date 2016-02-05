@@ -32,3 +32,4 @@ plus n = f where f x = x + n
 ```
 
 `plusn` is equivalent to the partially applied `plus n`
+
