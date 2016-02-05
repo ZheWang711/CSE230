@@ -49,5 +49,8 @@ zog\quad100=  \lambda f.\lambda x. f(f x) (\lambda n.\lambda x. n + x(20)\quad10
 =(\lambda x. 20 +x)(120)\\
 =140$$
 
+* Anonymous function: lambda expression! Use it the same place where you would write a function: `(\x -> x + 1) 100`.
+    *  `f x1 x2 .. xn = e` is same as `f = \x1 x2 ... xn -> e` 
+
 
 
