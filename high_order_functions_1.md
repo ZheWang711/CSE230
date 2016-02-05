@@ -22,4 +22,13 @@ plusn n = f where f x = x + n
 
 `->` is a type operator that takes 2 types: input and output and returns a new function type.
 * `->` is  right-associative: `Int -> Int -> Int` is equivalent to `Int -> (Int -> Int)`.
-* 
+
+```Haskell
+plus :: Int -> Int -> Int
+plus n x = n + x
+
+plusn :: Int -> (Int -> Int)
+plus n = f where f x = x + n
+```
+
+`plusn` is equivalent to the partially applied `plus n`
