@@ -63,4 +63,3 @@ zog\quad100=  \lambda f.\lambda x. f(f x) (\lambda n.\lambda x. n + x(20)\quad10
     * section `(1:)` takes a list of numbers and returns a new list with `1` followed by the input list.
 
 
-
