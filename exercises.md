@@ -1,6 +1,6 @@
 # Exercises
 
-1. Complex lambda expression derivation  
+### Complex lambda expression derivation  
  What is the value of `quiz5`?
 
 ```Haskell
@@ -12,7 +12,7 @@ quiz5   = foo (+ 10) 0
   where
     foo = do2 do3
 ```
-Solution:
+**Solution**:
 ```
 |>     = \x -> \f -> f x
 do2    = \f -> \x -> f (f x)
