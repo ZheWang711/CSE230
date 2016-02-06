@@ -14,3 +14,11 @@ Then the type of `doTwice` is `(t -> t) -> t -> t`, the point is that the first 
 * Polymorphic functions: can operate on different kinds values.
 * Polymorphic data structures: can contain different kinds of values.
 * Polymorphic functions often associate with polymorphic data structures, e.g. `[]` -- list data structure and `len` -- length of a list.
+
+### Bottling computation patterns with polymorphic high-order functions
+
+#### Iteration:
+```Haskell
+map f [] = []
+map f (x:xs) = f x : map f xs
+```
