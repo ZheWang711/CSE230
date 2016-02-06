@@ -8,6 +8,9 @@
 
 
 ### Functions
+* Parenthesis can wrap compound expressions, must do so for **arguments**  
+``
+
 * Basic Types:
     * Integer
     * Double
