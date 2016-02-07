@@ -51,6 +51,7 @@
     * **Data Types and constructors must start with capital letter**
     * Types and constructors can use the same name
     * one type can have multiple constructors
+    * Constructors act like functions producing values of their types.
 
     ```Haskell
     data CircleT = Circle(Double, Double, Double)
