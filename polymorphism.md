@@ -36,3 +36,32 @@ listAdd = foldr (+) 0
 listMul = foldr (*) 1
 ```
 
+### How to do abstraction? Parameterize!
+When finding abstract computation patterns, we can find abstract data patterns by identifying the bits that are different and turning them into parameters.
+
+**Example:**
+
+```Haskell
+data CharList = CEmpty
+              | COneAndMore Char CharList
+              deriving(Show)
+
+data DoubleList = DEmpty
+                | DOneAndMore Double DoubleList
+                deriving(Show)
+```
+can be extracted as
+```Haskell
+
+data List a = LEmpty
+          | LOneAndMore a (List a)
+          deriving(Show)
+
+
+type IntList    = List Int
+type CharList   = List Char
+type DoubleList = List Double
+```
+Here `a` **type parameter** that is passed as input to the type constructor.
+
+
