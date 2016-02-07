@@ -61,6 +61,8 @@ data List a = LEmpty
 type IntList    = List Int
 type CharList   = List Char
 type DoubleList = List Double
+
+l1 = 1 'LOneAndMore' 2 'OneAndMore' 3
 ```
 Here `a` **type parameter** that is passed as input to the type constructor.
 
