@@ -48,6 +48,10 @@
     * not a new type, just an shorthand(alias)
 
 * Define new types
+    * **Data Types and constructors must start with capital letter**
+    * Types and constructors can use the same name
+    * one type can have multiple constructors
+
     ```Haskell
     data CircleT = Circle(Double, Double, Double)
     data SquareT = Square(Double, Double, Double)
