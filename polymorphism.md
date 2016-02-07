@@ -20,5 +20,19 @@ Then the type of `doTwice` is `(t -> t) -> t -> t`, the point is that the first 
 #### Iteration:
 ```Haskell
 map f [] = []
-map f (x:xs) = f x : map f xs
+map f (x:xs) = (f x) : (map f xs)
+
+toUpperString = map toUpper
 ```
+* In Haskell, `f x = e x` is identical to `f = e` **as long as `x` doesn't appear in `e`**
+
+#### Folding:
+```Haskell
+foldr op base [] = base
+foldr op base (x:xs) = x `op` (foldr op base xs)
+
+
+listAdd = foldr (+) 0
+listMul = foldr (*) 1
+```
+
