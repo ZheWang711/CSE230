@@ -1,2 +1,62 @@
-# buffer
+# class note Feb 9
 
+* `type Parser = String -> (StructuredObject, String) ` what is the output string? why not `type Parser = String -> StructuredObject`?  The bit of remaining string!
+Only a part of of string is rendered at a time, want to output composible objects!
+
+* expression:
+    
+    ```Haskell
+    data Expr = Number Inyt
+              | Plus Expr Expr
+    
+    -- "2+1+5" is:
+    -- (Plus(Plus (Number 2) (Number 3)) (Number 5))
+    -- (Plus (Number 2) (Plus (Number 3) (Number 5)))
+    ```
+    
+    
+```Haskell
+    -- a new operator $
+    
+    "2$3$5"
+    data Expr = Nuumber Int
+              | Dollar Expr Expr
+              
+    
+    -- (Dollar(Dollar (Number 2) (Number 3)) (Number 5))
+    -- (Dollar (Number 2) (Dollar (Number 3) (Number 5)))
+    
+        ```
+
+```Haskell
+type X = ... -- not creating a new type, jus a short hand
+data X = ... -- creates a new data type
+newtype X = ... -- also creates a new data type
+```
+
+```Haskell
+-- take as input a parser, and a string s
+doParse :: Parser a -> String -> [(a, String)]
+doParse (P p) s = p s
+```
+
+* Quiz 1,
+
+```Haskell
+Which of the following is a valid single-character-parser that returns the first Char from a string (if one exists.)
+-- a
+oneChar = P $ \cs -> head cs
+-- same as oneChar = P (\cs -> head cs)
+-- b
+oneChar = P $ \case -> {[] -> [('', []) | c:cs -> (c, cs)}
+
+-- c
+oneChar = P $ \cs -> (head cs, tail cs)
+
+-- d
+oneChar = P $ \cs -> [(head cs, tail cs)]
+
+-- e
+oneChar = P $ \case -> { [] -> [] | cs -> [(head cs, tail cs)]}
+```
+abc is out because of the wrong output type(not a list), e is correct.
