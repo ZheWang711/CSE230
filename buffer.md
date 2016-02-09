@@ -60,3 +60,55 @@ oneChar = P $ \cs -> [(head cs, tail cs)]
 oneChar = P $ \case -> { [] -> [] | cs -> [(head cs, tail cs)]}
 ```
 abc is out because of the wrong output type(not a list), e is correct.
+
+* Quiz 2
+
+```Haskell
+-- I want a migical operator, such that:
+-- twoChar = migicOp oneChar oneChar
+
+
+twoChar' = foo oneChar oneChar 
+What must the type of foo be?
+
+Parser (Char, Char)
+Parser Char -> Parser (Char, Char)
+Parser a -> Parser a -> Parser (a, a)
+Parser a -> Parser b -> Parser (a, b)
+Parser a -> Parser (a, a)
+
+```
+
+Answer D is more generic!
+
+
+How to write the migical operator?
+```Haskell
+pairP ::  Parser a -> Parser b -> Parser (a, b)
+pairP p1 p2 = P (\cs -> 
+  [((x,y), cs'') | (x, cs' ) <- doParse p1 cs, 
+                   (y, cs'') <- doParse p2 cs']
+  )
+
+```
+
+
+```Haskell
+instance Functor Parser
+instance Applicative Parser
+instance Monad Parser where
+  -- return :: a -> Parser a
+  return x = P (\cs -> [(x, cs)])
+  
+  -- (>>=) :: PArser a -> (a -> Parser b) -> Parser b
+  (>>=) = bindP
+  bindP :::: PArser a -> (a -> Parser b) -> Parser b
+  bindP (P pA) fB = P(\cs -> [(xB, cs'') | (xA, cs') <- pA cs]
+                                          , let P pb = fB xA
+                                          , (XB, cs'') <- pB cs' ])
+
+
+
+
+```
+
