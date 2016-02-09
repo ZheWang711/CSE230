@@ -1,5 +1,19 @@
 # class note Feb 9
 
+## Solve the monad applicative error
+```Haskell
+import Control.Applicative
+import Control.Monad (liftM, ap)
+
+instance Functor ST0 where
+  fmap = liftM
+
+instance Applicative ST0 where
+  pure  = return
+  (<*>) = ap
+```
+
+
 * `type Parser = String -> (StructuredObject, String) ` what is the output string? why not `type Parser = String -> StructuredObject`?  The bit of remaining string!
 Only a part of of string is rendered at a time, want to output composible objects!
 
@@ -107,8 +121,54 @@ instance Monad Parser where
                                           , let P pb = fB xA
                                           , (XB, cs'') <- pB cs' ])
 
-
-
-
 ```
 
+* failP
+```Haskell
+failP :: Parser 
+failP = P(\_ -> [])
+-- instead we can use const
+failP = P $ const []
+```
+
+```Haskell
+digitInt = do c <- digitChar
+              return ((read [c]) :: Int)
+```
+
+```Haskell
+strP :: string -> Parser String
+strP [] = P (\cs -> ("", cs))
+-- strP (c:cs) = return ""
+strO (c:cs) = undefined
+-- c== is the same as \x -> x == c
+```
+
+* Quiz
+
+```Haskell
+-- a 
+p1 `chooseP` p2 = do xs <- p1
+                     ys <- p2
+                     return (x1 ++ x2) 
+-- b
+p1 `chooseP` p2 = do xs <- p1 
+                     case xs of 
+                       [] -> p2 
+                       _  -> return xs
+
+-- c
+p1 `chooseP` p2 = P $ \cs -> doParse p1 cs ++ doParse p2 cs
+
+-- d
+p1 `chooseP` p2 = P $ \cs -> case doParse p1 cs of
+                               [] -> doParse p2 cs
+                               rs -> rs
+```
+
+
+
+
+for a and b if the first parser failed, the whole failed.
+c: add all the possible answers.
+d: try the first one, if it succeed, use it, otherwise backtrack and run the second one
