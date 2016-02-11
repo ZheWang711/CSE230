@@ -1,6 +1,23 @@
 # Feb11
 
 ```Haskell
+
+instance Functor PArser where
+    -- fmap :: (a -> b) -> Parser a -> Parser b
+    fmap f (P pa) = P (\cs -> [(xb, cs') | (xa, cs')  <- pa cs  ])
+
+instance Applicative Parser
+    --pure :: a -> Parser a
+    pure x = P (\cs -> [(x, cs)])
+    
+    --(<*>) :: Parser (a -> b) -> Parser a -> Parser b
+    (P fP) <*> (P xP) = P (\cs -> [(xb, cs'') | (f, cs') <- fP cs
+                                            (x, cs'') <- xP cs'])
+    
+    
+instance Monad PArser where
+
+
 take4P :: Parser String
 take4P = do
     x1 <- oneChar
@@ -44,5 +61,6 @@ takeNP n = sequence (replicate n oneChar)
 
 
 take2or4 = (takeNP 2)  `choose` (takeNP 4)
+
     
 ```
