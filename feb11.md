@@ -39,8 +39,10 @@ Take all the results, and give back the results as one big list
 -}
 
 takeNP :: Int -> Parser String
---takeNP n = sequence (replicate n oneChar)
-takeNP n = replicateM n oneChar
+takeNP n = sequence (replicate n oneChar)
+--takeNP n = replicateM n oneChar
 
+
+take2or4 = (takeNP 2)  `choose` (takeNP 4)
     
 ```
