@@ -6,7 +6,7 @@ instance Functor PArser where
     -- fmap :: (a -> b) -> Parser a -> Parser b
     fmap f (P pa) = P (\cs -> [(xb, cs') | (xa, cs')  <- pa cs  ])
 
-instance Applicative Parser
+instance Applicative Parser where
     --pure :: a -> Parser a
     pure x = P (\cs -> [(x, cs)])
     
