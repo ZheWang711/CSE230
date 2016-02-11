@@ -172,3 +172,5 @@ p1 `chooseP` p2 = P $ \cs -> case doParse p1 cs of
 for a and b if the first parser failed, the whole failed.
 c: add all the possible answers.
 d: try the first one, if it succeed, use it, otherwise backtrack and run the second one
+
+
