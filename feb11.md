@@ -62,5 +62,23 @@ takeNP n = sequence (replicate n oneChar)
 
 take2or4 = (takeNP 2)  `choose` (takeNP 4)
 
-    
+
+tripleP -> Parser a -> Parser b -> Parser c -> Parser (a, b, c)
+tripleP aP bP cP = do
+    a <- aP
+    b <- bP
+    c <- cP
+    return (a, b, c)
+
+
+intP :: Parser Int
+intP = read <$> manyP digitChar
+
+calc exprP <|> intP
+    where 
+      exprP do
+        x <- intP
+        o <- intOp
+        y <- calc
+        return (x `o` y)
 ```
