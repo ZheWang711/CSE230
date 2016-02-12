@@ -81,4 +81,21 @@ calc exprP <|> intP
         o <- intOp
         y <- calc
         return (x `o` y)
+
+-- Problem
+-- 20 - 1 - 1 - 1 ==> 20 - (1- (1 - 1))
+--however minus should be left assisitive
+-- 10*2+5 ==> 70
+-- how to deal with it
+
+addOp
+mulOp
+
+sumE = addE <|> prodE
+    where addE = do
+        x <- factorE
+        o <- mulOp
+        y <- prodE
+        return $ x `o` y
+
 ```
