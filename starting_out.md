@@ -63,8 +63,45 @@ Example 2: remove non uppercase from a string
 removeNonUppercase st = [c | c <- st, c `elem` ['A'..'Z']]
 ```
 
+* **Nested list comprehension** -- operating list that  
+Example 3: remove all odd numbers without flattening the list
+```Haskell
+let xxs = [[1,3,5,2,3,1,2,4,5],[1,2,3,4,5,6,7,8,9],[1,2,4,2,1,6,3,1,3,2,3,6]] 
+[[x | x <- xs, even x] | xs <- xss]
+-- the above result will be [[2,2,4],[2,4,6,8],[2,4,2,6,2,6]]  
+```
 
+### Tuples
 
+* Use tuples when you know in advance how many components some piece of data should have.
+* No need homogeneous, a tuple can contain a combination of several types
+* Tuples can be used to represent a wide variety of data.
+    * `("Christopher", "Walken", 55)`
+* Tuples can contain lists
+* No singleton tuple: a singleton tuple would just be the value it contains.
+* Tuples can be compared with each other if their components can be compared (oly if same length).
+* 2 use functions operation operate on pairs:
+    * `fst` takes a pair and return its first component
+    * `snd` takes a pair and return its second component.
+* Produce pairs using `zip`
+    * takes 2 lists and then zips them together into one list, bvy joining the matching elements into pairs.
+    ```Haskell
+    zip [1 .. 5] ["one", "two", "three", "four", "five"]  
+    --will return [(1,"one"),(2,"two"),(3,"three"),(4,"four"),(5,"five")]  
+    ```
+    * The longer list simply gets cut off to match the length of the shorter one (*laziness*).
+    ```Haskell
+    zip [1..] ["apple", "orange", "cherry", "mango"]  
+    -- will return [(1,"apple"),(2,"orange"),(3,"cherry"),(4,"mango")]  
+    ```
+Example 4: Which right triangle that has integers for all sides and all sides equal to or smaller than 10 has a perimeter of 24?
+
+```Haskell
+-- first, generate al possible side combinations
+-- to aviod repeated answer, ordering a < b < c
+-- use predicates to apply constraints
+let rightTriangles = [(a, b, c) | c <- [1..10], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2, a + b + c == 24]
+```
 
 
 
