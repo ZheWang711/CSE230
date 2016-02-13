@@ -1,5 +1,12 @@
 # Starting Out
 
+
+## Summary
+* Use range to generate list: e.g. `[20,19..0]`
+* List comprehension: `[1 | _ <- xs]`
+* Combine 2 lists: `zip`
+
+
 ### Lists
 
 * A string is a list of characters
