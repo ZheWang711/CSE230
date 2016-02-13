@@ -9,5 +9,5 @@
 * [Recursive Data Type](recursive_data_type.md)
 * [buffer](buffer.md)
    * [Feb11](feb11.md)
-* Learn You a Haskell for Great Good!
+* [Learn You a Haskell for Great Good!](learn_you_a_haskell_for_great_good.md)
 
