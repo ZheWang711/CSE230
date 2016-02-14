@@ -16,3 +16,14 @@
     divideByTem = (/10)
     ```
         * **Special case: (-4) means minus 4**, if you want to make a function that substract 4 from the number:`(substract 4)`
+
+## Some higher-orderism is in order
+
+* Functions can take functions as parameters and also return functions.
+Ex: Implement function `zipWith`, which takes a function and 2 lists as parameters, and join the lists by applying the function between corresponding elements of 2 lists.
+```Haskell
+zipWith' :: (a -> b -> c) -> [a] -> [b] -> [c]
+zipWith' _ [] _ = []
+zipWith' _ _ [] = []
+zipWith' f (x:xs) (y:ys) = f x y : zipWith' f xs ys
+```
