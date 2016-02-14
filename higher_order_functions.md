@@ -7,4 +7,11 @@
     * `max 4 5` is equivalent with `(max 4) 5`
     * Putting **space** between 2 things is simply function application, **highest precedence**.
     * `max :: (Ord a) => a -> a -> a` can also be written as `max :: (Ord a) => a -> (a -> a)`
-    * Doing max 4 5 first creates a function that takes a parameter and returns either 4 or that parameter, depending on which is bigger. Then, 5 is applied to that function and that function produces our desired result.
+    * Doing `max 4 5` first creates a function that takes a parameter and returns either 4 or that parameter, depending on which is bigger. Then, 5 is applied to that function and that function produces our desired result.
+* **Partially applied** -- call a function with too few parameters
+    * Neat way to create function on the fly
+    * Infix functions can also be partially applied by using parentheses and only supply a parameter on one side.
+    ```Haskell
+    divideByTen :: (Floating a) => a -> a
+    divideByTem = (/10)
+    ```
