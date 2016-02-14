@@ -13,4 +13,5 @@
    * [Starting Out](starting_out.md)
    * [Types and Typeclasses](types_and_typeclasses.md)
    * [Syntax in functions](syntax_in_functions.md)
+   * Higher Order Functions
 
