@@ -15,4 +15,4 @@
     divideByTen :: (Floating a) => a -> a
     divideByTem = (/10)
     ```
-        * **(-4) means minus 4**, if you want to make a function that substract 4 from the number:`(substract 4)`
+        * **Special case: (-4) means minus 4**, if you want to make a function that substract 4 from the number:`(substract 4)`
