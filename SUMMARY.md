@@ -12,4 +12,5 @@
 * [Learn You a Haskell for Great Good!](learn_you_a_haskell_for_great_good.md)
    * [Starting Out](starting_out.md)
    * [Types and Typeclasses](types_and_typeclasses.md)
+   * Syntax in functions
 
