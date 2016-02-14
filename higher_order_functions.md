@@ -10,8 +10,9 @@
     * Doing `max 4 5` first creates a function that takes a parameter and returns either 4 or that parameter, depending on which is bigger. Then, 5 is applied to that function and that function produces our desired result.
 * **Partially applied** -- call a function with too few parameters
     * Neat way to create function on the fly
-    * Section a way to partially apply an infix function: infix functions can also be partially applied by using parentheses and only supply a parameter on one side.
+    * Section -- a way to partially apply an infix function: by using parentheses and only supply a parameter on one side.
     ```Haskell
     divideByTen :: (Floating a) => a -> a
     divideByTem = (/10)
     ```
+        * **(-4) means minus 4**, if you want to make a function that substract 4 from the number:`(substract 4)`
