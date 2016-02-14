@@ -27,3 +27,5 @@ zipWith' _ [] _ = []
 zipWith' _ _ [] = []
 zipWith' f (x:xs) (y:ys) = f x y : zipWith' f xs ys
 ```
+
+* Unlike imperative programming (use for loops; while loops;), **functional programming uses higher order functions to **
