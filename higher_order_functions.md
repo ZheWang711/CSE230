@@ -96,3 +96,11 @@ sqrtSums :: Int
 sqrtSums = length (takeWhile (<1000) (scanl1 (+)  (map (sqrt) [1,2..]))) + 1
 -- same as length (takeWhile (<1000) (scanl (+) 0 (map (sqrt) [1,2..])))
 ```
+
+## Function application with $
+* `$` function also called function application
+* `$` has the lowest precedence -- right associative
+    * `sqrt 3 + 4 + 9` is same as `(sqrt 3) + 4 + 9`
+    * `sqrt $ 3 + 4 + 9` is same as `sqrt (3 + 4 + 9)`
+* `$` means that function can be treated just like another function:
+    * `map ($ 3) [(4+), (10*), (^2), sqrt]` is `[7.0,30.0,9.0,1.7320508075688772]  `
