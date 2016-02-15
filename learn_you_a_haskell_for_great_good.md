@@ -7,4 +7,4 @@ Notes from reading [Learn You a Haskell for Great Good](http://learnyouahaskell.
    * [Types and Typeclasses](types_and_typeclasses.md) -- `=>`, Type variables, and Typeclasses.
    * [Syntax in functions](syntax_in_functions.md) -- Pattern Matching, Guards, `let .. in .. `, and `case` expressions.
    * [Higher Order Functions](higher_order_functions.md) -- Currying, high orderism,  `fold`, `$`, and `.`
-   * [Modules](modules.md) -- 
+   * [Modules](modules.md) -- Common Modules, loading and making modules.
