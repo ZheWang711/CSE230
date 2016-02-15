@@ -113,6 +113,7 @@ f . g = \x -> f (g x)
 ```
 * Can make function on the fly to pass to other functions (clearer and more concise than lambda expression)
 E.X: turn a list of numbers to negative numbers
+
 ```Haskell
 -- use lambda expression
 map (\ x -> negate (abs x)) [5,-3,-6,7,-3,2,-19,24]
@@ -120,11 +121,12 @@ map (\ x -> negate (abs x)) [5,-3,-6,7,-3,2,-19,24]
 -- use function composition
 map (nogate . abs) [5,-3,-6,7,-3,2,-19,24]
 ```
+
 * Right associative, so we can compose many functions at a time.  
 ` map (negate . sum . tail) [[1..5],[3..6],[1..7]]`
 * How to compose functions that take several parameters? Partially apply!
-* If you want to rewrite an expression with a lot of parentheses by using function composition, you can start by putting the last parameter of the innermost function after a $ and then just composing all the other function calls, writing them without their last parameter and putting dots between them. 
-    *`sum (replicate 5 (max 6.7 8.9))` is same as `(sum . replicate 5 . max 6.7) 8.9` is same as `sum . replicate 5 . max 6.7 $ 8.9`
+* If you want to rewrite an expression with a lot of parentheses by using function composition, you can start by putting the last parameter of the innermost function after a `$` and then just composing all the other function calls, writing them without their last parameter and putting dots between them. 
+    * `sum (replicate 5 (max 6.7 8.9))` is same as `(sum . replicate 5 . max 6.7) 8.9` is same as `sum . replicate 5 . max 6.7 $ 8.9`
     * `replicate 100 (product (map (*3) (zipWith max [1,2,3,4,5] [4,5,6,7,8])))` is same as `replicate 100 . product . map (*3) . zipWith max [1,2,3,4,5] $ [4,5,6,7,8]` -- the functions end with 3 `)`, so there is 3 `.`
     * Write function in point free style  
     `fn x = ceiling (negate (tan (cos (max 50 x)))) ` can be written as `fn = ceiling . negate . tan . cos . max 50`
