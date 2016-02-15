@@ -81,3 +81,18 @@ filter p (x:xs)
 flip' :: (a -> b -> c) -> b -> a -> c  
 flip' f = \x y -> f y x  
 ```
+
+## Folds
+* Reduce the list to a single 
+* Takes a binary function, a starting value, and a list to fold up.
+* Right folds work on infinite lists, whereas left fold don't!
+* **Folds can be used to implement any function where you traverse a list once, element by element, and the return something based on that** --- Whenever you want to traverse a list to return something, chances are you want a fold.
+* `scanl` and `scanr` are like `foldl` and `foldr`, only they report all the intermediate accumulator states in the form of a list. 
+    * When you use a `scanl`, the final result will be in the last element of resulting list whereas `scanr` will place the result on the head!
+
+E.X:  How many elements does it take for the sum of the roots of all natural numbers to exceed 1000?
+```
+sqrtSums :: Int
+sqrtSums = length (takeWhile (<1000) (scanl1 (+)  (map (sqrt) [1,2..]))) + 1
+-- same as length (takeWhile (<1000) (scanl (+) 0 (map (sqrt) [1,2..])))
+```
