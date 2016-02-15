@@ -66,3 +66,4 @@ filter p (x:xs)
 * Each of the usages can also be achieved with list comprehensions by the use of predicates.
 * Applying several predicates in a list comprehension == filtering something several times == joining the predicates with the logical && function.
 * Thanks to Haskell's laziness, even if you map something over a list several times and filter it several times, it will only pass over the list once.
+* `takeWhile predicate list` function takes `predicate` and a `list`, then goes from the beginning of the `list` and returns its elements while the `predicate` holds true. 
