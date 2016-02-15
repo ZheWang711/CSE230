@@ -54,6 +54,8 @@ map f (x:xs) = f x : map f xs
 * Each of the usages can be achieved using list comprehension
     * `map (+3) [1,5,3,1,6]` is same as `[(+3) x | x <- [1,5,3,1,6]]`
     * Using map is much more readable for cases where you only apply some function to the elements of a list, **especially once you're dealing with maps of maps**.
+* Can also apply functions that takes multiple parameters in `map`
+    * `map (*) [0..5]` get a list of functions: `[(0*), (1*), ... (5*)]`
 
 * `filter` is a function that takes a predicate (a function that tells whether something is true or not).
 ```Haskell
@@ -66,4 +68,16 @@ filter p (x:xs)
 * Each of the usages can also be achieved with list comprehensions by the use of predicates.
 * Applying several predicates in a list comprehension == filtering something several times == joining the predicates with the logical && function.
 * Thanks to Haskell's laziness, even if you map something over a list several times and filter it several times, it will only pass over the list once.
-* `takeWhile predicate list` function takes `predicate` and a `list`, then goes from the beginning of the `list` and returns its elements while the `predicate` holds true. 
+* `takeWhile predicate list` function takes `predicate` and a `list`, then goes from the beginning of the `list` and returns its elements while the `predicate` holds true.
+
+
+## Lambdas
+* Basically anonymous functions that are used because we need some function only once.
+* Normally for the sole purpose of passing it to a high order function
+* `\ parameter1 parameter2 -> function body`
+* One Parameter cannot have several patterns
+
+```Haskell
+flip' :: (a -> b -> c) -> b -> a -> c  
+flip' f = \x y -> f y x  
+```
