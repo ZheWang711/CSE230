@@ -69,7 +69,7 @@ filter p (x:xs)
 * Applying several predicates in a list comprehension == filtering something several times == joining the predicates with the logical && function.
 * Thanks to Haskell's laziness, even if you map something over a list several times and filter it several times, it will only pass over the list once.
 * `takeWhile predicate list` function takes `predicate` and a `list`, then goes from the beginning of the `list` and returns its elements while the `predicate` holds true.
-
+* `filter` doesn't work on infinite lists, but `takeWhile` does.
 
 ## Lambdas
 * Basically anonymous functions that are used because we need some function only once.
@@ -91,7 +91,7 @@ flip' f = \x y -> f y x
     * When you use a `scanl`, the final result will be in the last element of resulting list whereas `scanr` will place the result on the head!
 
 E.X:  How many elements does it take for the sum of the roots of all natural numbers to exceed 1000?
-```
+```Haskell
 sqrtSums :: Int
 sqrtSums = length (takeWhile (<1000) (scanl1 (+)  (map (sqrt) [1,2..]))) + 1
 -- same as length (takeWhile (<1000) (scanl (+) 0 (map (sqrt) [1,2..])))
