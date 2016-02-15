@@ -77,6 +77,22 @@ data Person = Person { firstName :: String
                        , flavor :: String
                        } deriving (Show)
 ```
+* Different Pattern Matching for constructor
+
+```Haskell
+-- record syntax
+data Car = Car { company :: String
+                , model :: String
+                , year :: Int
+                } deriving(Show)
+
+
+tellCar :: Car -> String
+tellCar (Car {company = c, model = m, year = y}) = "This " ++ c ++ " " ++ m ++ " was made in " ++ show y
+
+tellCar' :: Car -> String
+tellCar' (Car c m y) = "This " ++ c ++ " " ++ m ++ " was made in " ++ show y
+```
 
 ## Type Parameters
 * **Value constructor** can take some values parameters and then produce a new value
@@ -87,4 +103,45 @@ data Maybe a = Nothing | Just a
 ```
     * `a` is the type parameter
     * `Maybe` is a type constructor
-    * 
+* Usually we use them when our data type would work regardless of the type of the value it holds.
+
+**A bad example of using type parameters**
+```Haskell
+data Car a b c = Car { company :: a
+                     , model :: b
+                     , year :: c
+                     } deriving(Show)
+
+
+-- the type signature is much more complicated
+-- the only benefit is is that we can use any type that's an instance of the show type class as the type for c
+tellCar :: (Show a) => Car String String a -> String
+tellCar (Car {company = c, model = m, year = y}) = "This " ++ c ++ " " ++ m ++ " was made in " ++ show y
+```
+
+**A good example of using type parameters**
+```haskell
+-- Map k v from Data.Map
+-- k is the type of keys in a map
+-- v is the type of values
+-- Having maps parameterized enables us to have mapping from any type to any type (As long as the type of the key is part of Ord typeclass)
+```
+* **Never add typeclass constraints in data declarations** -- put the typeclass constraints in the type signature of functions that **assume the constraints**
+
+An example of parameterized vector
+```Haskell
+-- No typeclass constraints here!
+data Vector a = Vector a a a deriving (Show)
+
+vplus :: (Num t) => Vector t -> Vector t -> Vector t
+(Vector i j k) `vplus` (Vector l m n) = Vector (i + l) (j + m) (k + n)
+
+...
+
+```
+
+* Distinguish type constructor and** value constrcutor
+    * When declearing a data type, **the part before `=` is type constructor**, **the parts (possibly separated by `|`) after `=` are value constructors**.
+    * We have to put types in type declaration
+        * `Vector t -> Vector t -> t` is correct!
+        * `Vector t t t -> Vector t t t -> t` is wrong!
