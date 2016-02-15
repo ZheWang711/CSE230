@@ -15,5 +15,5 @@
    * [Syntax in functions](syntax_in_functions.md)
    * [Higher Order Functions](higher_order_functions.md)
    * [Modules](modules.md)
-   * Making Own Types and Typeclasses
+   * [Making Own Types and Typeclasses](making_own_types_and_typeclasses.md)
 
