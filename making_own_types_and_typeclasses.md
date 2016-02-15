@@ -59,3 +59,32 @@ module Shapes
 , baseRect  
 ) where  
 ```
+
+* Could also export any value constructors for `Shape` by just writing `Shape` in the export statement. -- can only make shapes by auxiliary functions.
+    * Makes a data types more abstract, hide their implementation.
+
+## Record synatx
+
+* Haskell can automatically make field query function
+* Displays differently
+* Use record syntax when a constructor has several fields and it's not obvious which field is which
+```Haskell
+data Person = Person { firstName :: String
+                       , lastName :: String
+                       , age :: Int
+                       , height :: Float
+                       ,phoneNumber :: String
+                       , flavor :: String
+                       } deriving (Show)
+```
+
+## Type Parameters
+* **Value constructor** can take some values parameters and then produce a new value
+
+* **Type Constructor** take type as parameters to produce new types
+```Haskell
+data Maybe a = Nothing | Just a
+```
+    * `a` is the type parameter
+    * `Maybe` is a type constructor
+    * 
