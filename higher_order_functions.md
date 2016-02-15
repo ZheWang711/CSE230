@@ -1,7 +1,7 @@
 # Higher Order Functions
 
 ## Curried Functions
-* Currying is the process of transforming a function that takes multiple arguments into a function that takes just a single argument and returns another function if any arguments are still needed.
+*  Currying is the technique of translating the evaluation of a function that takes multiple arguments (or a tuple of arguments) into evaluating a sequence of functions, each with a single argument. It is automatically done by Haskell.
 * Every function in Haskell officially only takes one parameter
 * All functions that accepted several parameters so far have been **curried functions**
     * `max 4 5` is equivalent with `(max 4) 5`
