@@ -173,3 +173,13 @@ data Person = Person { firstName :: String
     * `read "Just 't'" :: Maybe a`
 * `Ord` type class -- types that have values can be ordered
     * The value which was made with a constructor that's defined first is considered smaller.
+        * `Nothing` is always smaller than a value of `Just something`.
+        * If we compare 2 `Just` values, the nit goes to compare what's inside them.
+* Can easily use algebraic data types to make enumerations -- `Enum` and `Bounded` typeclasses help us!
+    * `Enum` -- for things that have predecessors and successors
+        * All constructors must be nullary (take no parameters)
+    * `Bounded` -- for things that have a lowest possible value and highest possible value
+
+Example -- `Enum` and `Bounded`
+```Haskell
+```
