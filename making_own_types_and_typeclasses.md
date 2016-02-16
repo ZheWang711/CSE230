@@ -255,3 +255,43 @@ instance (Eq m) => Eq (Maybe m) where
     * If you see that a type is used as a concrete type in type declarations (like `a -> a -> Bool`), have to supply type parameters ana add parentheses to make it concrete.
     * Type you're trying to make an instance of will replace the parameter in `class` declaration.
 * Want to see what instances of a typeclass are, do `:info YourTypeClass` in GHCI.
+
+### Example: A yes/no typeclass
+```Haskell
+-- define a yes/no typeclass
+
+-- class declaration
+class YesNo a where
+    yesno :: a -> Bool
+
+-- define some instances
+instance YesNo Int where -- for numbers
+    yesno 0 = False
+    yesno _ = True
+
+instance YesNo [a] where -- for Lists
+    yesno [] = False
+    yesno _ = True
+
+instance YesNo Bool where -- for bools
+    yesno = id
+    -- id: standard library function that takes a parameter and returns the same thing
+
+instance YesNo (Maybe a) where -- for Maybe
+-- no ned a class constraint, because we made no assumption about the contents of Maybe
+    yesno (Just _) = True
+    yesno Nothing = False
+
+instance YesNo (Tree a) where -- for Tree
+    yesno EmptyTree = False
+    yesno _ = True
+
+instance YesNo TrafficLight where
+    yesno Red = False
+    yesno _ = True
+```
+Now, we can define a function that take advantages of our `YesNo` typeclass
+```Haskell
+yesnoIf :: (YesNo y) => y -> a -> a -> a
+yesnoIf yesnoVal yesResult noResult = if yesno yesnoVal then yesResult else noResult
+```
