@@ -197,3 +197,19 @@ pred Saturday -- Friday
 
 * `type`keyword  just make a synonym for an already existing type. `type String = [Char]`
 * Giving `String` type synonyms is something that Haskell programmers do when they want to convey more information about what strings in their functions should be used as and what they represent.
+
+## Typeclasses 102 -- make types instances of typeclasses by hand
+
+* Recap:
+    * Typeclasses are like interfaces. A typeclass defines some behavior, and types that can behave in that way are made instances of that typeclass
+    * Behavior of a typeclass is achieved by defining functions or just type declarations that we implement.
+    * A type is an instance of a typeclass ==> we can use the funtions that the typeclasses defines with that type!
+    * E.g. `Eq` typeclass is for stuff that can be equated. It defines functions `==` and `/=`. If we have a type `Car` and comparing 2 cars with the equality function `==` makes ense, then it makes sense for `Car` to be an instance of `Eq`
+* Define `Eq` typeclass
+```Haskell
+class Eq a where
+    (==) :: a -> a -> Bool
+    (/=) :: a -> a -> Bool
+    x == y = not (x /= y)
+    x /= y = not (x == y)
+```
