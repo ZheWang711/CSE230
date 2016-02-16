@@ -193,4 +193,7 @@ pred Saturday -- Friday
 [Monday, Wednesday  .. Sunday] -- [Monday,Wednesday,Friday,Sunday]
 ```
 
-## Type synonyms
+## Type synonyms -- only for readability
+
+* `type`keyword  just make a synonym for an already existing type. `type String = [Char]`
+* Giving `String` type synonyms is something that Haskell programmers do when they want to convey more information about what strings in their functions should be used as and what they represent.
