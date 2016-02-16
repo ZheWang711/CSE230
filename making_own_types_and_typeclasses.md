@@ -2,7 +2,7 @@
 
 ## Algebraic data types intro
 * `data` meas we are defining a new data type
-    * ``data Bool = False | True
+    * `data Bool = False | True`
     * Part before `=` denotes the type
     * Parts after `=` are **value constructors**
 * When we write a value constructor, we can optionally add some types after it and those types define the value it will contain.
@@ -189,5 +189,8 @@ minBound :: Day  -- Monday
 maxBound :: Day  -- Sunday
 succ Monday -- Tuesday
 pred Saturday -- Friday
-[Thursday..Sunday] -- [Thursday, Friday, Saturday, Sunday]
+[Thursday .. Sunday] -- [Thursday, Friday, Saturday, Sunday]
+[Monday, Wednesday  .. Sunday] -- [Monday,Wednesday,Friday,Sunday]
 ```
+
+## Type synonyms
