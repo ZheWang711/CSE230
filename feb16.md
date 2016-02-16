@@ -52,3 +52,5 @@ catch eA h = case eA of
 * Monad transformer: start with a simple monad, and continue make it more powerful.
 * `evalMega :: (MonadST m, MonadExc m) => Expr -> m Int`
     * the return type is both a `MonadST` and `MonadExc`
+
+* In reality, use Monad Transformer library
