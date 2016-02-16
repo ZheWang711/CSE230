@@ -189,4 +189,5 @@ minBound :: Day  -- Monday
 maxBound :: Day  -- Sunday
 succ Monday -- Tuesday
 pred Saturday -- Friday
+[Thursday..Sunday] -- [Thursday, Friday, Saturday, Sunday]
 ```
