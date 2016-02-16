@@ -213,3 +213,45 @@ class Eq a where
     x == y = not (x /= y)
     x /= y = not (x == y)
 ```
+
+    * Type variable `a` will play the role of the type that will soon be making instance of `Eq`.
+    * Not mandatory to implement the function bodies themselves, just have to specify the type declearations.
+* Make instance by hand
+    * use `instance` keyword.
+        * `class` is defining new typeclasses
+        * `instance` is for making out types instances of typeclasses
+    * Minimal complete definition for the typeclasses -- minimum of functions that we have to implement
+    ```Haskell
+    data TrafficLight = Red | Yellow | Green
+    
+    -- here a is replaced with TrafficLight
+    instance Eq TrafficLight where
+        Red == Red = True
+        Green == Green = True
+        Yellow == Yellow = True
+        _ == _ = False
+    
+    instance Show TrafficLight where
+        show Red = "Red Light"
+        show Yellow = "Yellow Light"
+        show Green = "Green Light"
+    ```
+* Make typeclasses that are subclasses of other typeclasses
+```Haskell
+class (Eq a) => Num a where
+    ...
+```
+Here out type `a` must be an instance of `Eq`
+
+* Instance non-concrete type -- make it concrete!
+```Haskell
+instance (Eq m) => Eq (Maybe m) where
+    Just x == Just y = x == y
+    Nothing == Nothing = True
+    _ == _ = False
+```
+    * class constraints in `class` declearations are used for making a typeclass a **subclass** of another typeclass
+    * class constraints in `instance` declarations are used to express requirements about the contents of some type
+    * If you see that a type is used as a concrete type in type declarations (like `a -> a -> Bool`), have to supply type parameters ana add parentheses to make it concrete.
+    * Type you're trying to make an instance of will replace the parameter in `class` declaration.
+* Want to see what instances of a typeclass are, do `:info YourTypeClass` in GHCI.
