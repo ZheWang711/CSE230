@@ -145,3 +145,5 @@ vplus :: (Num t) => Vector t -> Vector t -> Vector t
     * We have to put types in type declaration
         * `Vector t -> Vector t -> t` is correct!
         * `Vector t t t -> Vector t t t -> t` is wrong!
+
+## Derived Instances
