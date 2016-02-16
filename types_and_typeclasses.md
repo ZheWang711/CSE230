@@ -14,7 +14,7 @@
     * `Bool`: Boolean type, can only be `True` or `False`
     * `Char`: single character, denoted by single quotes
 
-## Type variables and Type Classes
+## Type variables and Type Classes (Typeclass 101)
 
 * Remember `head` is a function that return the first element of a list: `:t head` ==> `[a] -> a`
     * `a` here is not a type (Written in capital), it is a **type variable**.
