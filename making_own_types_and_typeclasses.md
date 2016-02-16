@@ -148,4 +148,28 @@ vplus :: (Num t) => Vector t -> Vector t -> Vector t
 
 ## Derived Instances
 
-* "A typeclass is a sort of an interface that defines some behavior." A type can be made an **instance** of a typeclass if it supports that *behavior*.
+* "A typeclass is a sort of an interface that defines some *behavior*." A type can be made an **instance** of a typeclass if it supports that *behavior*.
+    * If a type is a part of typeclass `A`, we can use the interface functions of `A` with values of that type.
+* Typeclasses are more like interfaces, we don't make data from typeclasses.
+    * Instead, we first make our data type and then we think about what it can act like. (e.g. If a type act like something that can be ordered , we make it an instance of `Ord` typeclass)
+
+* How can we manually make our types instances of typeclasses? By implement the functions defined by typeclasses!
+    * Haskell can automatically make our type an instance of following typeclasses: `Eq`, `Ord`, `Enum`, `Bounded`, `Show`, `Read` (by `deriving` keyword).
+
+Example: `Eq`, `Show`, and `read`
+```Haskell
+data Person = Person { firstName :: String
+                     , lastName :: String
+                     , age :: Int
+                     } deriving (Eq, Show, Read)
+```
+* Generate a data, even in different field order!
+    * `mikeD = Person {lastName = "Diamond", age = 43, firstName = "Michael"}`
+* Read function, need **type annotation**
+    * `s = read "Person {firstName = \"Michael\", lastName = \"Diamond\", age = 43}" :: Person`
+* Equality test
+    * `eq = s == mikeD`
+* Can also read parameterized types, but have to fill in the type parameters.
+    * `read "Just 't'" :: Maybe a`
+* `Ord` type class -- types that have values can be ordered
+    * The value which was made with a constructor that's defined first is considered smaller.
