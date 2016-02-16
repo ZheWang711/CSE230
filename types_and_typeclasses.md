@@ -22,7 +22,7 @@
     * **polymorphic functions:** functions that have type variables
 
 
-* A Type class is sort of interface that defines some behavior.
+* **A Type class is sort of interface that defines some behavior**.
 * **If a type is part of  a typeclass**, it **support and implements the behavior** the typeclass describes. (Kind of like Java interfaces, only better)
 * If a function is comprised only of special characters, it's considered a infix function by default
 * `=>` symbol
