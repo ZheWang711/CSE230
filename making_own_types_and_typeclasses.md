@@ -176,10 +176,17 @@ data Person = Person { firstName :: String
         * `Nothing` is always smaller than a value of `Just something`.
         * If we compare 2 `Just` values, the nit goes to compare what's inside them.
 * Can easily use algebraic data types to make enumerations -- `Enum` and `Bounded` typeclasses help us!
-    * `Enum` -- for things that have predecessors and successors
+    * `Enum` -- for things that have predecessors (`pred`) and successors (`succ`)
         * All constructors must be nullary (take no parameters)
-    * `Bounded` -- for things that have a lowest possible value and highest possible value
+    * `Bounded` -- for things that have a lowest possible value and highest possible value (`minBound`, `maxBound`)
 
 Example -- `Enum` and `Bounded`
 ```Haskell
+data Day = Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday
+    deriving (Eq, Ord, Show, Read, Bounded, Enum)
+
+minBound :: Day  -- Monday
+maxBound :: Day  -- Sunday
+succ Monday -- Tuesday
+pred Saturday -- Friday
 ```
