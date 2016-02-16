@@ -295,3 +295,7 @@ Now, we can define a function that take advantages of our `YesNo` typeclass
 yesnoIf :: (YesNo y) => y -> a -> a -> a
 yesnoIf yesnoVal yesResult noResult = if yesno yesnoVal then yesResult else noResult
 ```
+
+### `Functor` typeclass -- things that can be mapped over
+
+* Mapping lists is popular in Haskell. Yes, list is a part of `Functor` typeclass.
