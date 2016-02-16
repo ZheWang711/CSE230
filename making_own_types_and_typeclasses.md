@@ -147,3 +147,5 @@ vplus :: (Num t) => Vector t -> Vector t -> Vector t
         * `Vector t t t -> Vector t t t -> t` is wrong!
 
 ## Derived Instances
+
+* "A typeclass is a sort of an interface that defines some behavior." A type can be made an **instance** of a typeclass if it supports that *behavior*.
