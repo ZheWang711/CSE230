@@ -10,7 +10,7 @@
 * [buffer](buffer.md)
    * [Feb11](feb11.md)
    * [Feb16](feb16.md)
-   * Feb 18
+   * [Feb 18](feb_18.md)
 * [Learn You a Haskell for Great Good!](learn_you_a_haskell_for_great_good.md)
    * [Starting Out](starting_out.md)
    * [Types and Typeclasses](types_and_typeclasses.md)
