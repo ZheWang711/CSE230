@@ -299,3 +299,53 @@ yesnoIf yesnoVal yesResult noResult = if yesno yesnoVal then yesResult else noRe
 ### `Functor` typeclass -- things that can be mapped over
 
 * Mapping lists is popular in Haskell. Yes, list is a part of `Functor` typeclass.
+
+* Note from [stack overflow](http://stackoverflow.com/questions/2030863/in-functional-programming-what-is-a-functor):**A functor is a kind of collection for which if you are given a function on elements, `fmap` wiil give you back a function on collections**
+    * A type `T` belongs to `Functor` type class if it has certain collection-like behavior:
+        * `T` is paramterized over another type, which you should think of as the element type of the collection, the full type is something like `T Int`; `T String`...
+        * If you have a function of type `a -> b` (on elements), then you have to be able to take that function and product a related function on collections, with the operator `fmap`, which is shared by every type in the `Functor` type class.
+        * Example: say you have a function `even :: Int -> Bool`, then `fmap even` is an overloaded function allows you to do wonderful things:
+            * Convert a list of integers to a list of booleans
+            * Convert a tree of integers to a tree of booleans
+            * Convert `Nothing` to `Nothing` and `Just 7` to `Just False`
+        * This property is expressed by giving the type of `fmap`: `fmap :: (Functor t) => (a -> b) -> t a -> t b`
+
+### Kind
+
+* Kind is somewhat type of type
+* Type constructors can be partially applied, just like a function can.
+* `:k Int` will generate `Int :: *` which means a **concrete type**
+    * Concrete doesn't take any parameters
+    * Values can only have types that are concrete.
+* `:k Maybe` generate `Maybe :: * -> *`, `Maybe` type constructor takes one concrete type (`Int`) then returns a concrete type (`Maybe Int`)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
