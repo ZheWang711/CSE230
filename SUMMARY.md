@@ -18,6 +18,6 @@
    * [Higher Order Functions](higher_order_functions.md)
    * [Modules](modules.md)
    * [Making Own Types and Typeclasses](making_own_types_and_typeclasses.md)
-   * IO
+   * [IO](io.md)
    * [Functors, Applicative Functors and Monads](functors,_applicative_functors_and_monads.md)
 
