@@ -77,7 +77,13 @@
 * **2 Functor laws**
     * **1:** If we map the `id` function over a functor, the functor that we get back should be the same as the original functor. (`id` is the identity function, where `id x = x`)
     * **2:** `fmap (f . g) = fmap f . fmap g`: compositing 2 functions and then mapping the resulting function over a functor should be the same as first mapping one function over the function and then mapping the other one. Another way to write it `fmap (f.g) F = fmap f (fmap g F)`
-    * If a type obeys the functor laws, we know that calling fmap on a value of that type will only map the function over it, nothing more. 
+    * If a type obeys the functor laws, we know that calling fmap on a value of that type will only map the function over it, nothing more.
+
+## Applicative functor
+
+* `fmap`only provide mapping **normal function** over a functor.
+    * How to deal with **function that inside a functor**? Pattern matching
+        * 
    
    
 
