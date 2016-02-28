@@ -51,8 +51,9 @@
     ```
 
 
-* 2 advanced Functor usage
+* Advanced Functor usage
     * **Composition** Functions that has type `(->) r` can be instances of Functor
+        * If you want to apply multiple transformations to some data inside a functor, you can declare your own function at the top level, make a lambda function or ideally, use function composition
         * `fmap` has the type `a -> b -> f a -> f b` ==> `(a -> b) -> ((->) r a) -> ((->) r b)`  
           ==> `(a -> b) -> (r -> a) -> (r -> b)`
         * The definition is **function composition**:
@@ -64,18 +65,39 @@
     * **Lifting** a function: `fmap :: (a->b) -> (f a -> f b)` -- partially apply fmap using a function
         * Think of a Functor as a function that takes a function and returns a new function that's just like the old one, only it takes a Functor as a parameters and returns a Functor as the result.
         * The function will work on any Functor
+    * `IO` action is an instance of functor
+        * The result of mapping something over an I/O action will be an I/O action
+        * The result value is the return value of applying the function over the original value.
+        * If you want to bind the result of an I/O action to a name and apply a function to that and call that something else, do use `fmap`
+    * We can think of functors as things that output values in a context.
+        * Mapping over functiors can be thought of **attaching a transformation to the output of the functor that changes the value** E.g.: `fmap (+3) (*3)` -- we attach the transformation `(+3)` to the eventual output of `(*3)`. 
 
-
-
-* `IO` action is an instance of functor
-    * The result of mapping something over an I/O action will be an I/O action
-    * The result value is the return value of applying the function over the original value.
 
 
 * **2 Functor laws**
-    * If we map the `id` function over a functor, the functor that we get back should be the same as the original functor. (`id` is the identity function, where `id x = x`)
-    * If you want to bind the result of an I/O action to a name and apply a function to that and call that something else, do use `fmap`
-    * If you want to apply multiple transformations to some data inside a functor, you can declare your own function at the top level, make a lambda function or ideally, use function composition
+    * **1:** If we map the `id` function over a functor, the functor that we get back should be the same as the original functor. (`id` is the identity function, where `id x = x`)
+    * **2:** `fmap (f . g) = fmap f . fmap g`: compositing 2 functions and then mapping the resulting function over a functor should be the same as first mapping one function over the function and then mapping the other one. Another way to write it `fmap (f.g) F = fmap f (fmap g F)`
+    * If a type obeys the functor laws, we know that calling fmap on a value of that type will only map the function over it, nothing more. 
+   
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
