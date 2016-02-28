@@ -86,12 +86,19 @@
         * e.g. mapping the function in `a = Just (3 *)` to `b = Just 5`: `fmap (x where Just x = a) b`
     * more general and abstract way?
 
+* **`Applicative`** type class
 ```Haskell
 class (Functor f) => Applicative f where
     pure :: a -> f a
     (<*>) :: f (a -> b) -> f a -> f b
 ```
-   
+    * `Application` is also in `Functor`, we can use `fmap` on it.
+    * `pure :: a -> f a`: We take a value and we wrap it in an applicative functor that has the value as the result inside it.
+    * `(<*>):: (a -> b) -> f a -> f b`: It's sort of a beefed up `fmap`!
+        * `fmap` takes a function and a functor and applies the function inside the functor.
+        * `<*>` takes a functor that has a function in it and another functor and sort of extracts that function from the first functor and then maps it over the second one.
+        * `<*>` is left-associative
+        * **Applicative style:** `pure f <*> x <*> y <*> ...`
    
 
 
