@@ -83,7 +83,14 @@
 
 * `fmap`only provide mapping **normal function** over a functor.
     * How to deal with **function that inside a functor**? Pattern matching
-        * 
+        * e.g. mapping the function in `a = Just (3 *)` to `b = Just 5`: `fmap (x where Just x = a) b`
+    * more general and abstract way?
+
+```Haskell
+class (Functor f) => Applicative f where
+    pure :: a -> f a
+    (<*>) :: f (a -> b) -> f a -> f b
+```
    
    
 
