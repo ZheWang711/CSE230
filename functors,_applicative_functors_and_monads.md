@@ -93,14 +93,67 @@ class (Functor f) => Applicative f where
     (<*>) :: f (a -> b) -> f a -> f b
 ```
     * `Application` is also in `Functor`, we can use `fmap` on it.
-    * `pure :: a -> f a`: We take a value and we wrap it in an applicative functor that has the value as the result inside it.
+    * `pure :: a -> f a`: Putting a value in a minimal context that still holds it as its result.
     * `(<*>):: (a -> b) -> f a -> f b`: It's sort of a beefed up `fmap`!
         * `fmap` takes a function and a functor and applies the function inside the functor.
         * `<*>` takes a functor that has a function in it and another functor and sort of extracts that function from the first functor and then maps it over the second one.
         * `<*>` is left-associative
         * **Applicative style:** `pure f <*> x <*> y <*> ...`
-   
+        * `pure f <*> x` equals `fmap f x`
+    * `<$>` function: just `fmap` as an infix operator
+    ```Haskell
+    (<$>):: (Functor f) => (a -> b) -> f a -> f b
+    f <$> x = fmap f x
+    -- type variables are independent of parameter names or other value names
+    -- f in the signature is a constraint saying that any type constructor that replaces f should be in Functor type class
+    -- f in the function body denotes a function that we map over x
+    ```
+    If we want to apply a function `f` between 3 applicative functors, we can write `f <$> x <*> y <*> z`
+* Some Example of Applicative
+    * List : `fs <*> xs = [f x | f <- fs, x <- xs]`
+    ``` Haskell
+    [(*0),(+100),(^2)] <*> [1,2,3] 
+    = [0,0,0,101,102,103,1,4,9] `
+    
+    (++) <$> ["ha","heh","hmm"] <*> ["?","!","."] 
+    = ["ha?","ha!","ha.","heh?","heh!","heh.","hmm?","hmm!","hmm."]
+    ```
+    * IO:
+    ```Haskell
+    instance Applicative IO where
+        pure = return
+        a <*> b = do
+            f <- a -- first performs the first one to get the function 
+            x <- b -- then performs the second one to get the value
+            return (f x) -- yield that function applied to the value as its result
+    ```
+        * If you want binding some I/O actions to names and then calling some function on them and presenting that as the result by using `return` ==> using the applicative style.
+        ```Haskell
+        myAction :: IO String
+        myAction = do
+            a <- getLine
+            b <- getLine
+            return  (a ++ b)
+        
+        -- myAction is same as the following expression
+        (++) <$> getLine <*> getLine 
+        
+        ```
+    * Function of type `(->) r`
+    ```Haskell
+    instance Applicative ((->) r) where
+        pure x = (\_ -> x)
+        f <*> g = \x -> f x (g x)
+    ```
+    Example: `(\x y z -> [x,y,z]) <$> (+3) <*> (*2) <*> (/2) $ 5` = `[8.0,10.0,2.5]`
 
+## `newtype` keyword
+
+* [Difference](http://stackoverflow.com/questions/5889696/difference-between-data-and-newtype-in-haskell/5889784) between `data` and `newtype`
+    * The constructor of `newtype` is guaranteed to be erased at compile time
+    * A `newtype` only works when wrapping a data type with **a single construcor**
+
+    
 
 
 
