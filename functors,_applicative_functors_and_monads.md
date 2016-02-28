@@ -151,8 +151,22 @@ class (Functor f) => Applicative f where
 
 * [Difference](http://stackoverflow.com/questions/5889696/difference-between-data-and-newtype-in-haskell/5889784) between `data` and `newtype`
     * The constructor of `newtype` is guaranteed to be erased at compile time
-    * A `newtype` only works when wrapping a data type with **a single construcor**
+    * A `newtype` only works when wrapping a data type with **a single construcor with only one field**
+    *  `newtype` Just take one type and wrap it in something to present it as another type
+    *  `newtype` is faster (low overhead)
 
+* `newtype` can only turn an existing type into a new type
+Example: how to map over the first element of a tuple (functor kind must be `* -> *`, but tuple has `* -> * -> *`)
+
+```Haskell
+-- plan: make the tuple into a new type, then pattern match to get its first component and apply function for it
+
+newtype Pair b a = Pair {getPair :: (a, b)}
+
+instance Functor (Pair c) where
+    fmap f (Pair (x, y)) = Pair (f x, y)
+
+```
     
 
 
