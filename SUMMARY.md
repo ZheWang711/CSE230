@@ -20,4 +20,5 @@
    * [Making Own Types and Typeclasses](making_own_types_and_typeclasses.md)
    * [IO](io.md)
    * [Functors, Applicative Functors and Monads](functors,_applicative_functors_and_monads.md)
+* Understanding Monads
 
