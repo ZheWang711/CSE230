@@ -22,4 +22,5 @@
    * [Functors, Applicative Functors and Monads](functors,_applicative_functors_and_monads.md)
 * [Understanding Monads](understanding_monads.md)
 * [Testing](testing.md)
+* High order types
 
