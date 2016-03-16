@@ -39,9 +39,34 @@ class Monad m where
     * For example, combining this rule with the previous one:  
       ```Haskell
       do writeFile "testFile.txt" "Hello File System"
-         putStr "HelloWorld"
+         putStr "Hello World"
       
       -- is equvalent to
       
-      writeFile "testFile.txt" "Hello File System" >> putStr "HelloWorld"
+      writeFile "testFile.txt" "Hello File System" >> putStr "Hello World"
       ```
+    *  In the above example, Sequencing of two commands is just the application of `(>>)` to the two values of type `IO()`. The entire expression is of type `IO()`.
+  * **Rules for pattern matching:**
+    ```Haskell
+    do pat <- e1; e2;...en  =>
+    
+    let ok pat = do e2;...en
+        ok _ = fail "..."
+    in e1 >>= ok
+    ```
+    * Think `e1 >>= ok` as: It "executes" `e1`, then applies `ok` to the result
+    * What happens after that is defined by `ok`, if the match succeeds, the rest of the commands executed, otherwise the operation `fail` in the monad class is called, which in most cases resylts in an error.
+    * A special case: `pat` is just a name, the mathing cannot fail, the rule simplifies to:
+    ```Haskell
+    do x <- e1; e2; ...; en   =>
+    
+    e1 >>= \x -> do e2; ...; en
+    ```
+  * Final rule: `let` notation in a `do` expression
+    ```Haskell
+    do let decllist; e2; ... en   =>
+    
+    let decllist in do e2; ...; en
+    ```
+ 
+ 
