@@ -1,5 +1,6 @@
 # High order types
 
+
 ### Functor
 
 ```Haskell
