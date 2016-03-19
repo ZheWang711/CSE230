@@ -98,6 +98,79 @@ max x y = if x > y then x else y
 ```
 
 
+### Case Study: Associative Maps & Evaluation
+
+1. Let's Banish Missing Key Exceptions!
+```Haskell
+
+data Map k v = Emp
+             | Bind k v (Map k v)
+               deriving (Eq, Ord, Show)
+
+
+{-@ measure keys @-}
+keys :: (Ord k) => Map k v -> S.Set k
+keys Emp          = S.empty
+keys (Bind k _ m) = add k m
+
+{-@ empty :: {m:Map k v | noKeys m} @-}
+empty :: Map k v
+empty = Emp
+
+{-@ inline noKeys @-}
+noKeys :: (Ord k) => Map k v -> Bool
+noKeys m = keys m == S.empty
+
+{-@ insert :: k:_ -> _ -> m:_ -> {v: _ | keys v = add k m } @-}
+insert :: k -> v -> Map k v -> Map k v
+insert k v m = Bind k v m
+
+{-@ inline add @-}
+add :: (Ord k) => k -> Map k v -> S.Set k
+add k kvs = S.union (S.singleton k) (keys kvs)
+
+{-@ lookup :: (Eq k) => k:k -> {m:Map k v | has k m} -> v @-}
+lookup k' (Bind k v m)
+  | k' == k   = v
+  | otherwise = lookup k' m
+lookup _  Emp = impossible "lookup"
+
+{-@ inline has @-}
+has :: (Ord k) => k -> Map k v -> Bool
+has k m = S.member k (keys m)    -- EXERCISE fix using,
+                  --   keys     :: Map k v -> Set k
+                  --   S.member :: k -> S.Set k -> Bool
+```
+
+2. Expressions
+```Haskell
+-- Let's define a small language of Expr
+
+data Var  = V String deriving (Eq, Ord, Show)
+
+data Expr = Val  Int
+          | Var  Var
+          | Plus Expr Expr
+          | Let  Var  Expr Expr
+          
+-- Now we can deine values as a refinement of Expr
+
+{-@ type Val = {v:Expr | isVal v} @-}
+
+{-@ measure isVal @-}
+isVal :: Expr -> Bool
+isVal (Val _) = True
+isVal _       = False
+
+-- Q: What's a suitable signature for plus?
+{-@ plus :: Val -> Val -> Val @-}
+plus (Val i) (Val j) = Val (i+j)
+plus _         _     = impossible "plus"
+
+-- Environments: Env maps Var to Val
+{-@ type Env = Map Var Val @-}
+
+```
 
 
 
