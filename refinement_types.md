@@ -71,3 +71,46 @@ fx2VC x xs ys =   (0 <= size xs)
               ==> (size ys == 1 + size xs)
               ==> (0 < size ys)
 ```
+
+### `measure` and `inline`
+
+In both cases, the body must be expressions that are:
+* **Valid refinements** whose grammar was shown in the the first lecture.
+* In particular, the only function symbols are OTHER measures or inlines etc OR symbols understood by the SMT solver (e.g. `<, >, +, -`)
+
+A `measure` is a single argument function from a **data type** to something else, with single equation per data constructor.
+
+`measure` example:
+```Haskell
+{-@ measure len @-}
+len :: [a] -> Int
+len [] = 0
+len (x:xs) = 1 + xs
+```
+
+An `inline` is an arbitrary non recursive function (multiple parameters)
+
+`inline` example:
+```Haskell
+{-@ inline max @-}
+max :: Int -> Int -> Int
+max x y = if x > y then x else y
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
