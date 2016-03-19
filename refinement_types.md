@@ -100,7 +100,7 @@ max x y = if x > y then x else y
 
 ### Case Study: Associative Maps & Evaluation
 
-1. Let's Banish Missing Key Exceptions!
+##### Let's Banish Missing Key Exceptions!
 
 ```Haskell
 
@@ -143,7 +143,7 @@ has k m = S.member k (keys m)    -- EXERCISE fix using,
                   --   S.member :: k -> S.Set k -> Bool
 ```
 
-2. Expressions
+##### Expressions
 
 ```Haskell
 -- Let's define a small language of Expr
