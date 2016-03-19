@@ -205,8 +205,16 @@ topEval =  eval Emp
 {-@ inline closed @-}
 closed :: Expr -> Bool
 closed e = S.isSubsetOf (free e) (S.empty) -- EXERCISE
--- Here, we can't use "closed e = wellScoped Emp e" since SMT solver doen't recognize wellScoped
+-- Here, we can't use "closed e = wellScoped Emp e" since SMT solver cannot recognize wellScoped
 
+
+-- safeEval should work with any Expr and Env
+{-@ safeEval :: Env -> Expr -> Maybe Val @-}
+safeEval g e
+  | ok        = Just $ eval g e
+  | otherwise = Nothing
+  where
+    ok        = wellScoped g e  -- EXERCISE
 ```
 
 
