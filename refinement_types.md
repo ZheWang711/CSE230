@@ -145,18 +145,14 @@ has k m = S.member k (keys m)    -- EXERCISE fix using,
 2. Expressions
 ```Haskell
 -- Let's define a small language of Expr
-
 data Var  = V String deriving (Eq, Ord, Show)
-
 data Expr = Val  Int
           | Var  Var
           | Plus Expr Expr
           | Let  Var  Expr Expr
           
 -- Now we can deine values as a refinement of Expr
-
 {-@ type Val = {v:Expr | isVal v} @-}
-
 {-@ measure isVal @-}
 isVal :: Expr -> Bool
 isVal (Val _) = True
@@ -170,6 +166,35 @@ plus _         _     = impossible "plus"
 -- Environments: Env maps Var to Val
 {-@ type Env = Map Var Val @-}
 
+-- Free Variables
+{-@ measure free @-}
+free               :: Expr -> S.Set Var
+free (Val _)       = S.empty
+free (Var x)       = S.singleton x
+free (Plus e1 e2)  = S.union xs1 xs2
+  where xs1        = free e1
+        xs2        = free e2
+free (Let x e1 e2) = S.union xs1 (S.difference xs2 xs)
+  where xs1        = free e1
+        xs2        = free e2
+        xs         = S.singleton x
+        
+-- Well-scoped expressions: e is well-scoped in an eng G if free variables of e are defined in G
+{-@ type ScopedExpr G = {e: Expr | wellScoped G e} @-}
+
+{-@ inline wellScoped @-}
+wellScoped :: Env -> Expr -> Bool
+wellScoped g e = S.isSubsetOf (free e) (keys g)
+
+-- we can now eval Expr as:
+{-@ eval :: env:Env -> ScopedExpr{env} -> Val @-}
+eval _ i@(Val _)     = i
+eval g (Var x)       = lookup x g
+eval g (Plus e1 e2)  = plus (eval g e1) (eval g e2)
+eval g (Let x e1 e2) = eval gx e2
+  where
+    gx               = insert x v1 g
+    v1               = eval g e1
 ```
 
 
