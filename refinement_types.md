@@ -101,6 +101,7 @@ max x y = if x > y then x else y
 ### Case Study: Associative Maps & Evaluation
 
 1. Let's Banish Missing Key Exceptions!
+
 ```Haskell
 
 data Map k v = Emp
@@ -143,6 +144,7 @@ has k m = S.member k (keys m)    -- EXERCISE fix using,
 ```
 
 2. Expressions
+
 ```Haskell
 -- Let's define a small language of Expr
 data Var  = V String deriving (Eq, Ord, Show)
