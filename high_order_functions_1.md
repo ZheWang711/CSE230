@@ -41,13 +41,13 @@ plus n x = n + x
 doTwice f x = f (f x)
 zog = doTwice(plus 20)
 ```
-$$plus = \lambda n.\lambda x. n + x \\
-doTwice = \lambda f.\lambda x. f(f x) \\
-zog\quad100=  \lambda f.\lambda x. f(f x) (\lambda n.\lambda x. n + x(20)\quad100) \\
-=\lambda f.\lambda x. f(f x) (\lambda x. 20 +x\quad100) \\
-=(\lambda x. 20 +x)(\lambda x. 20 +x(100)) \\
-=(\lambda x. 20 +x)(120) \\
-=140$$ 
+$$plus = \lambda n.\lambda x. n + x$$
+$$doTwice = \lambda f.\lambda x. f(f x) $$
+$$zog\quad100=  \lambda f.\lambda x. f(f x) (\lambda n.\lambda x. n + x(20)\quad100)$$
+$$=\lambda f.\lambda x. f(f x) (\lambda x. 20 +x\quad100)$$
+$$=(\lambda x. 20 +x)(\lambda x. 20 +x(100))$$
+$$=(\lambda x. 20 +x)(120)$$
+$$=140$$ 
 
 * Anonymous function: lambda expression! Use it the same place where you would write a function: `(\x -> x + 1) 100`.
     *  `f x1 x2 .. xn = e` is same as `f = \x1 x2 ... xn -> e`
