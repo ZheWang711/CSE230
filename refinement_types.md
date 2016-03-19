@@ -195,6 +195,18 @@ eval g (Let x e1 e2) = eval gx e2
   where
     gx               = insert x v1 g
     v1               = eval g e1
+
+-- Experise: Top-;level Evaluation:
+=-   A closed Expr can be evaluated in any environment
+{-@ type ClosedExpr = {e: Expr | closed e} @-}
+{-@ topEval :: ClosedExpr -> Val @-}
+topEval =  eval Emp
+
+{-@ inline closed @-}
+closed :: Expr -> Bool
+closed e = S.isSubsetOf (free e) (S.empty) -- EXERCISE
+-- Here, we can't use "closed e = wellScoped Emp e" since SMT solver doen't recognize wellScoped
+
 ```
 
 
